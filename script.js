@@ -1,10 +1,11 @@
-$(document).ready(function () {
+
 // The current day is displayed at the top of the calendar
 let today = dayjs();
 $('#currentDay').text(today.format('dddd, MMMM D YYYY'));
 let time = dayjs().format('HH');
 
-// Time blocks 
+// Time blocks
+$(document).ready(function () { 
 $('.time-block').each(function () {
   let timeBlock = $(this).attr('id').split('-')[1];
   console.log(this);
@@ -23,7 +24,7 @@ $('.time-block').each(function () {
 
 // Added code to get any user input that was saved in localStorage and set
 // the values of the corresponding textarea elements. 
-$('.saveBtn').click(function (event) {
+$('.saveBtn').on("click", function (event) {
   event.preventDefault();
   let content = $(this).siblings('.time').val();
   let hour = $(this).parent().attr('id').split('-')[1];
@@ -41,8 +42,7 @@ $('#hour-16 .time').val(localStorage.getItem('16'));
 $('#hour-17 .time').val(localStorage.getItem('17'));
 
 //Clear local storage
-$('#clearBtn').click(function (event) {
-  event.preventDefault;
+$('#clearBtn').on("click", function (event) {
   $('textArea').val('');
   localStorage.clear();
 });
